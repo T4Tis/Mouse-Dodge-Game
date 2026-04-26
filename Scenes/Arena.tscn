@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7dgjga8hkulq"]
+
+[ext_resource type="Texture2D" uid="uid://dsio63q5jq5xw" path="res://imgs/campo.png" id="1_bcb0y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u45fm"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_bcb0y")
+
+[node name="Bottom" type="CollisionShape2D" parent="."]
+position = Vector2(0, 397)
+shape = SubResource("WorldBoundaryShape2D_u45fm")
+
+[node name="Top" type="CollisionShape2D" parent="."]
+position = Vector2(0, -398)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_u45fm")
+
+[node name="Left" type="CollisionShape2D" parent="."]
+position = Vector2(-398, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_u45fm")
+
+[node name="Right" type="CollisionShape2D" parent="."]
+position = Vector2(397, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_u45fm")

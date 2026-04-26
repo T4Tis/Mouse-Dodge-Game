@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://hnj8bvrr5tfh"]
+
+[ext_resource type="PackedScene" uid="uid://b7dgjga8hkulq" path="res://Arena.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bv6kveb20h6ko" path="res://Script/maneger.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ijmkoxbt0pym" path="res://Scenes/Soldado.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dga2u551d4md5" path="res://Script/attacks.gd" id="4_7mycd"]
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "Rapido1raio"
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"createLaser"
+}, {
+"args": [],
+"method": &"createLaser"
+}, {
+"args": [],
+"method": &"createLaser"
+}, {
+"args": [],
+"method": &"createLaser"
+}, {
+"args": [],
+"method": &"createLaser"
+}, {
+"args": [],
+"method": &"createLaser"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lquwl"]
+_data = {
+&"Rapido1raio": SubResource("Animation_1bvp3")
+}
+
+[node name="main" type="Node2D"]
+
+[node name="Maneger" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_1bvp3")
+
+[node name="LifeLabel" type="Label" parent="Maneger"]
+texture_filter = 1
+offset_left = 116.0
+offset_top = 48.0
+offset_right = 169.0
+offset_bottom = 71.0
+text = "Vida: X"
+
+[node name="Arena" parent="." instance=ExtResource("1_0xm2m")]
+position = Vector2(576, 324)
+scale = Vector2(0.7, 0.7)
+collision_layer = 5
+
+[node name="Soldado" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(576, 324)
+
+[node name="Attacks" type="Node2D" parent="."]
+script = ExtResource("4_7mycd")
+
+[node name="AtaqueSimples" type="AnimationPlayer" parent="Attacks"]
+libraries = {
+&"": SubResource("AnimationLibrary_lquwl")
+}

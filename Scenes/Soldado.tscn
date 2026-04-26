@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ijmkoxbt0pym"]
+
+[ext_resource type="Script" uid="uid://duv8kca4rwsmw" path="res://Script/soldado.gd" id="1_nb2tf"]
+[ext_resource type="Texture2D" uid="uid://b27asskumrymx" path="res://imgs/SoldadoCombateV1.png" id="2_3cf5h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3cf5h"]
+radius = 8.06226
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("1_nb2tf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_3cf5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3cf5h")

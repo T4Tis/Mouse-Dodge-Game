@@ -1,0 +1,184 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1ps2oipy0ldi"]
+
+[ext_resource type="Script" uid="uid://d1fvv7k5kwojv" path="res://Script/triagulo_peseguidor.gd" id="1_en1ox"]
+[ext_resource type="Texture2D" uid="uid://ca55dgvu8e6as" path="res://imgs/TriaguloPerseguir.png" id="2_h83y8"]
+
+[sub_resource type="Animation" id="Animation_h83y8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_en1ox"]
+resource_name = "TrianguloAnimation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(4.43828, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.760784, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shot"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fimAtaque"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h83y8"]
+_data = {
+&"RESET": SubResource("Animation_h83y8"),
+&"TrianguloAnimation": SubResource("Animation_en1ox")
+}
+
+[sub_resource type="Animation" id="Animation_c3vr8"]
+resource_name = "FimAtaqueAnimacao"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(9.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.717647, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionPolygon2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2cehu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3lv51"]
+_data = {
+&"FimAtaqueAnimacao": SubResource("Animation_c3vr8"),
+&"RESET": SubResource("Animation_2cehu")
+}
+
+[node name="TriaguloPeseguidor" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_en1ox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("2_h83y8")
+offset = Vector2(0, -2)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+rotation = 1.5706
+polygon = PackedVector2Array(0, -10, -9, 6, 9, 6)
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+rotation = 1.5706
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -2.4)
+polygon = PackedVector2Array(0, -12, -14, 11, 14, 11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_h83y8")
+}
+
+[node name="FimAtaque" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3lv51")
+}
+speed_scale = 0.5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

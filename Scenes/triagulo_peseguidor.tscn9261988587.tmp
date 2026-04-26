@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ps2oipy0ldi"]
+
+[ext_resource type="Script" uid="uid://d1fvv7k5kwojv" path="res://Script/triagulo_peseguidor.gd" id="1_en1ox"]
+[ext_resource type="Texture2D" uid="uid://ca55dgvu8e6as" path="res://imgs/TriaguloPerseguir.png" id="2_h83y8"]
+
+[node name="TriaguloPeseguidor" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_en1ox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2.4)
+texture = ExtResource("2_h83y8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -2.4)
+polygon = PackedVector2Array(0, -12, -14, 11, 14, 11)
