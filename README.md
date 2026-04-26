@@ -1,5 +1,7 @@
 Use the movement of your mouse to dodge
+
 Click Start to initiate the dodge game
+
 You have 3 lives
 
 ## Debug Controls
