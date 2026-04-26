@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://hnj8bvrr5tfh"]
+[gd_scene format=3 uid="uid://hnj8bvrr5tfh"]
 
 [ext_resource type="Script" uid="uid://bv6kveb20h6ko" path="res://Script/maneger.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ijmkoxbt0pym" path="res://Scenes/Soldado.tscn" id="1_ig7tw"]
@@ -249,13 +249,13 @@ _data = {
 &"padraoDeAttack": SubResource("Animation_21xkr")
 }
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" unique_id=503335049]
 
-[node name="Maneger" type="Node" parent="."]
+[node name="Maneger" type="Node" parent="." unique_id=1960638629]
 unique_name_in_owner = true
 script = ExtResource("1_1bvp3")
 
-[node name="LifeLabel" type="Label" parent="Maneger"]
+[node name="LifeLabel" type="Label" parent="Maneger" unique_id=251485373]
 texture_filter = 1
 offset_left = 116.0
 offset_top = 48.0
@@ -263,44 +263,36 @@ offset_right = 169.0
 offset_bottom = 71.0
 text = "Vida: X"
 
-[node name="Timer" type="Timer" parent="Maneger"]
+[node name="Timer" type="Timer" parent="Maneger" unique_id=258271112]
 wait_time = 0.2
 
-[node name="Arena" parent="." instance=ExtResource("2_jjvhh")]
+[node name="Arena" parent="." unique_id=603216775 instance=ExtResource("2_jjvhh")]
 position = Vector2(576, 324)
 scale = Vector2(0.7, 0.7)
 collision_layer = 5
 
-[node name="Soldado" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Soldado" parent="." unique_id=914210811 instance=ExtResource("1_ig7tw")]
 position = Vector2(576, 324)
 
-[node name="Attacks" type="Node2D" parent="."]
+[node name="Attacks" type="Node2D" parent="." unique_id=1867122392]
 script = ExtResource("4_7mycd")
 
-[node name="AtaqueSimples" type="AnimationPlayer" parent="Attacks"]
-libraries = {
-&"": SubResource("AnimationLibrary_lquwl")
-}
+[node name="AtaqueSimples" type="AnimationPlayer" parent="Attacks" unique_id=878789071]
+libraries/ = SubResource("AnimationLibrary_lquwl")
 
-[node name="TrianguloAtaque" type="AnimationPlayer" parent="Attacks"]
-libraries = {
-&"": SubResource("AnimationLibrary_21xkr")
-}
+[node name="TrianguloAtaque" type="AnimationPlayer" parent="Attacks" unique_id=1901535211]
+libraries/ = SubResource("AnimationLibrary_21xkr")
 
-[node name="CirculoAtaque" type="AnimationPlayer" parent="Attacks"]
-libraries = {
-&"": SubResource("AnimationLibrary_kry3j")
-}
+[node name="CirculoAtaque" type="AnimationPlayer" parent="Attacks" unique_id=1763603590]
+libraries/ = SubResource("AnimationLibrary_kry3j")
 
-[node name="DuracaoAtaque" type="Timer" parent="Attacks"]
+[node name="DuracaoAtaque" type="Timer" parent="Attacks" unique_id=765143268]
 wait_time = 5.0
 
-[node name="Attack" type="AnimationPlayer" parent="Attacks"]
-libraries = {
-&"": SubResource("AnimationLibrary_6bp64")
-}
+[node name="Attack" type="AnimationPlayer" parent="Attacks" unique_id=1869923680]
+libraries/ = SubResource("AnimationLibrary_6bp64")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=209477880]
 offset_left = 477.0
 offset_top = 209.0
 offset_right = 677.0
